@@ -5,8 +5,8 @@ var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
-var isFinished = false;
-var secondsLeft = 60
+var isGameOver = false;
+var secondsLeft = 120 
 
 var questions = [
     {
@@ -36,51 +36,51 @@ var questions = [
             { option: "function :: myFunction()", correct: false},
         ]
     },
-     {
-        question: "How do you call a function named 'myFunction'?",
-        options: [
-            { option: "call myFunction()", correct: false},
-            { option: "myFunction()", correct: true},
-            { option: "call function myFunction()", correct: false},
-            { option: "function => function()", correct: false},
-        ]
-    },
-     {
-        question: "How to write an IF statement in JavaScript?",
-        options: [ 
-            { option: "if i = 5 then", correct: false },
-            { option: "if (i == 5)", correct: false },
-            { option: "if i = 5", correct: true },
-            { option: "if i == 5 then", correct: false },
-        ]
-    },
-    {
-        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
-        options: [
-            { option: "if i <> 5", correct: false},
-            { option: "if (i !-5)", correct: false},
-            { option: "if i =! 5 then", correct: false},
-            { option: "if (i <> 5)", correct: true}
-        ]
-    },
-    {
-        question: "How does a FOR loop start?",
-        options: [
-            { option: "for i = 1 to 5", correct: true},
-            { option: "for (i = 0; i < = 5)", correct: false},
-            { option: "for (i <= 5; i++)", correct: false},
-            { option: "for (i = 0; i <= 5; i++)", correct: true},
-        ]
-    },
-     {
-        question: "How can you add a comment in a JavaScript?",
-        options: [
-            { option: "'This is a comment'", correct: false},
-            { option: "<!-- This is a comment -->", correct: true},
-            { option: "<!== This is a comment ==>", correct: false},
-            { option: "//This is a comment", correct: true},
-        ]
-    },
+    //  {
+    //     question: "How do you call a function named 'myFunction'?",
+    //     options: [
+    //         { option: "call myFunction()", correct: false},
+    //         { option: "myFunction()", correct: true},
+    //         { option: "call function myFunction()", correct: false},
+    //         { option: "function => function()", correct: false},
+    //     ]
+    // },
+    //  {
+    //     question: "How to write an IF statement in JavaScript?",
+    //     options: [ 
+    //         { option: "if i = 5 then", correct: false },
+    //         { option: "if (i == 5)", correct: true },
+    //         { option: "if i = 5", correct: false },
+    //         { option: "if i == 5 then", correct: false },
+    //     ]
+    // },
+    // {
+    //     question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    //     options: [
+    //         { option: "if i <> 5", correct: false},
+    //         { option: "if (i !-5)", correct: false},
+    //         { option: "if i (!==) 5 then", correct: true},
+    //         { option: "if (i <> 5)", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "How does a FOR loop start?",
+    //     options: [
+    //         { option: "for i = 1 to 5", correct: false},
+    //         { option: "for (i = 0; i < = 5)", correct: false},
+    //         { option: "for (i <= 5; i++)", correct: false},
+    //         { option: "for (i = 0; i <= 5; i++)", correct: true},
+    //     ]
+    // },
+    //  {
+    //     question: "How can you add a comment in a JavaScript?",
+    //     options: [
+    //         { option: "'This is a comment'", correct: false},
+    //         { option: "<!-- This is a comment -->", correct: false},
+    //         { option: "<!== This is a comment ==>", correct: false},
+    //         { option: "//This is a comment", correct: true},
+    //     ]
+    // },
 ]
 
 var points = 0
@@ -93,6 +93,7 @@ startBtn.addEventListener("click", startGame)
 
 function startGame(){
 
+    secondsLeft = 120;
     startBtn.classList.add("hide");
     currentQuestionIndex = 0;
 
@@ -116,7 +117,7 @@ function setCountDown(){
         }
         if (secondsLeft <= 0) {
             timerEl.style.color = "red"
-            isFinished = true;
+            gameFinished()
         }
 
         timerEl.innerText = secondsLeft;
@@ -125,7 +126,6 @@ function setCountDown(){
     }, 1000);
 
 }
-
 
 
 // Get the next question
@@ -178,14 +178,12 @@ function selectAnswer(e){
         currentQuestionIndex++
         setInterval (getNextQuestion, 1000)
     }   
-    
-    else {
-        isFinished = true;
-        startBtn.innerText = "Restart"
-        startBtn.classList.remove('hide')
-        console.log("no more questions")
+
+    else if (currentQuestionIndex < maximumQuestions){
+        gameFinished()
     }
 
+    // changing points
     if (selectedButton.dataset.correct) {
         points = points + 100
         scoreEl.innerText = points
@@ -201,8 +199,14 @@ function selectAnswer(e){
 }
 
 
+function gameFinished(){
+    questionContainerEl.classList.add("hide");
+    headerEl.classList.add("hide")
 
+    startBtn.classList.remove("hide")
+    startBtn.innerText = "Restart"
 
+}
 
 
 // If correct, add correct class. Else, add incorrect class.
@@ -215,10 +219,12 @@ function setClass(element, correct){
     }
 }
 
+
 // Remove classes
 function clearClass(element) {
     element.classList.remove('correct')
     element.classList.remove('incorrect')
-
 }
+
+// game over 
 
