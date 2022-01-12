@@ -5,6 +5,7 @@ var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
+var isFinished = false;
 
 var questions = [
     {
@@ -81,6 +82,8 @@ var questions = [
     },
 ]
 
+var points = 0
+
 var maximumQuestions = questions.length
 var currentQuestionIndex 
 
@@ -112,6 +115,7 @@ function setCountDown(){
         }
         if (secondsLeft <= 0) {
             timerEl.style.color = "red"
+            isFinished = true;
         }
 
         timerEl.innerText = secondsLeft;
@@ -122,13 +126,13 @@ function setCountDown(){
 }
 
 
-
 // Get the next question
 function getNextQuestion(){
     resetDisplay()
     showQuestion(questions[currentQuestionIndex])
 
 }
+
 
 // Show questions on display
 function showQuestion(x){
@@ -171,12 +175,30 @@ function selectAnswer(e){
     if (maximumQuestions > currentQuestionIndex + 1) {
         currentQuestionIndex++
         setInterval (getNextQuestion, 1000)
-    // Else display options for restart
-    } else {
+    }   
+    
+    else {
+        isFinished = true;
         startBtn.innerText = "Restart"
         startBtn.classList.remove('hide')
+        console.log("no more questions")
+    }
+
+    if (selectedButton.dataset.correct) {
+        points = points + 100
+        scoreEl.innerText = points
+    } 
+    
+    else {
+        points = points - 100
+        scoreEl.innerText = points
     }
 }
+
+
+
+
+
 
 // If correct, add correct class. Else, add incorrect class.
 function setClass(element, correct){
