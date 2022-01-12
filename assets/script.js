@@ -96,8 +96,32 @@ function startGame(){
     headerEl.classList.remove("hide")
 
     getNextQuestion()
+    setCountDown()
 
 }
+
+// Set countdown 
+function setCountDown(){
+    var secondsLeft = 60;
+
+    var countDown = setInterval(() => {
+
+
+        if (secondsLeft > 0) {
+            secondsLeft--;
+        }
+        if (secondsLeft <= 0) {
+            timerEl.style.color = "red"
+        }
+
+        timerEl.innerText = secondsLeft;
+
+        
+    }, 1000);
+
+}
+
+
 
 // Get the next question
 function getNextQuestion(){
