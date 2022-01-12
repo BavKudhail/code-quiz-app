@@ -6,6 +6,7 @@ var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
 var isFinished = false;
+var secondsLeft = 60
 
 var questions = [
     {
@@ -103,9 +104,9 @@ function startGame(){
 
 }
 
+
 // Set countdown 
 function setCountDown(){
-    var secondsLeft = 60;
 
     var countDown = setInterval(() => {
 
@@ -124,6 +125,7 @@ function setCountDown(){
     }, 1000);
 
 }
+
 
 
 // Get the next question
@@ -192,6 +194,9 @@ function selectAnswer(e){
     else {
         points = points - 100
         scoreEl.innerText = points
+
+        secondsLeft = secondsLeft - 10
+        setCountDown()
     }
 }
 
