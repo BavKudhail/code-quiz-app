@@ -39,7 +39,7 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over - done 
 
 WHEN the game is over
-THEN I can save my initials and my score
+THEN I can save my initials and my score - done
 ```
 
 ## Mock-Up

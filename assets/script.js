@@ -5,9 +5,10 @@ var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
-var isGameOver = false;
-var secondsLeft = 120 ;
+var secondsLeft;
 var saveScoreEl = document.getElementById("save-score-container");
+var saveScoreBtnEl = document.getElementById("save-score-btn");
+var restartBtn = document.getElementById("restart-btn");
 
 var questions = [
     {
@@ -83,7 +84,6 @@ var questions = [
     //     ]
     // },
 ]
-
 var points = 0
 
 var maximumQuestions = questions.length
@@ -93,17 +93,22 @@ startBtn.addEventListener("click", startGame)
 
 
 function startGame(){
+    points = 0;
+    scoreEl.innerText = points
 
     secondsLeft = 120;
+    timerEl.innerText = secondsLeft;
+
     startBtn.classList.add("hide");
     currentQuestionIndex = 0;
 
     questionContainerEl.classList.remove("hide");
     headerEl.classList.remove("hide")
 
+    saveScoreEl.classList.add("hide");
+
     getNextQuestion()
     setCountDown()
-
 }
 
 
@@ -195,21 +200,8 @@ function selectAnswer(e){
         scoreEl.innerText = points
 
         secondsLeft = secondsLeft - 10
-        setCountDown()
+        // setCountDown()
     }
-}
-
-
-function gameFinished(){
-    questionContainerEl.classList.add("hide");
-    headerEl.classList.add("hide")
-
-    startBtn.classList.remove("hide")
-    startBtn.innerText = "Restart"
-
-    saveScoreEl.classList.remove("hide")
-    
-
 }
 
 
@@ -230,5 +222,30 @@ function clearClass(element) {
     element.classList.remove('incorrect')
 }
 
-// game over 
+// Function executes when game is finished
+function gameFinished(){
+    questionContainerEl.classList.add("hide");
+    headerEl.classList.add("hide")
+
+    restartBtn.classList.remove("hide")
+
+    saveScoreEl.classList.remove("hide")
+    saveScoreBtnEl.addEventListener('click', saveScore)
+}
+
+// Reloads the game when restart button is clicked
+restartBtn.addEventListener('click', function(){
+    location.reload()
+})
+
+function saveScore(event){
+    event.preventDefault()
+
+    var name = document.getElementById("name-input").value;
+    var score = scoreEl.innerText
+
+    localStorage.setItem("name", name);
+    localStorage.setItem("score", score);
+
+}
 
