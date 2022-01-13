@@ -5,39 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
+    <!-- link for css and javascript -->
     <link rel="stylesheet" href="./assets/style.css">
     <script defer src="./assets/script.js"></script>
 </head>
 <body>
 
-    <div class="hide" id="header">
-        <div>Score</div>
-        <div id="score-text">0</div>
-        <div>Timer</div>
-        <div id="timer-text">Tick Tock</div>
-    </div>
+    <!-- header for scores and timer -->
+    <header class="hide" id="header">
+        <div class="score-container">
+            <div>Score</div>
+            <div id="score-text">0</div>
+        </div>
+        <div class="timer-container">
+            <div>Timer</div>
+            <div id="timer-text">Tick Tock</div>
+        </div>
+        <button id="high-score-button" class="hide">View High Scores</button>
+    </header>
 
+    <!-- main questions container -->
     <div id="question-container" class="hide" >
         <div id="question">Question</div>
-        <div id="option-buttons">
-            <button>Option 1</button>
-            <button>Option 2</button>
-            <button>Option 3</button>
-            <button>Option 4</button>
+        <div class="options-container">
+            <div id="option-buttons">
+                <button>Option 1</button>
+                <button>Option 2</button>
+                <button>Option 3</button>
+                <button>Option 4</button>
+            </div>
         </div>
     </div>
-    <button id="start-btn" class="">Start</button>
-    <!-- <button id="scores-btn" class="">Scores</button> -->
 
+    <!-- control buttons -->
+    <button id="start-btn" class="">Start</button>
     <button id="restart-btn" class="hide">Restart</button>
 
+    <!-- score container -->
     <div id="save-score-container" class="hide">
-        <div id="name-container">
             <label for="Score-Text">Your Final Score Is </label>
             <br>
             <label for="Name">Enter Initials</label>
             <input type="text" id="name-input">
-        </div>
         <button id="save-score-btn">Save Score</button>
     </div>
 

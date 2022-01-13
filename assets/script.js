@@ -1,14 +1,17 @@
+// DOM variables
 var startBtn = document.getElementById("start-btn");
+var saveScoreBtnEl = document.getElementById("save-score-btn");
+var restartBtn = document.getElementById("restart-btn");
 var timerEl = document.getElementById("timer-text");
 var scoreEl = document.getElementById("score-text");
+
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
-var secondsLeft;
 var saveScoreEl = document.getElementById("save-score-container");
-var saveScoreBtnEl = document.getElementById("save-score-btn");
-var restartBtn = document.getElementById("restart-btn");
+
+var secondsLeft;
 
 var questions = [
     {
