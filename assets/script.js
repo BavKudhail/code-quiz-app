@@ -6,7 +6,8 @@ var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
 var isGameOver = false;
-var secondsLeft = 120 
+var secondsLeft = 120 ;
+var saveScoreEl = document.getElementById("save-score-container");
 
 var questions = [
     {
@@ -205,6 +206,9 @@ function gameFinished(){
 
     startBtn.classList.remove("hide")
     startBtn.innerText = "Restart"
+
+    saveScoreEl.classList.remove("hide")
+    
 
 }
 
