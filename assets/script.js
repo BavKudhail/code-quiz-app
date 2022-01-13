@@ -10,6 +10,7 @@ var questionEl = document.getElementById("question");
 var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
 var saveScoreEl = document.getElementById("save-score-container");
+var messageEl = document.getElementById("answer-message");
 
 var secondsLeft;
 
@@ -149,6 +150,7 @@ function getNextQuestion(){
 
 // Show the next question on screen
 function showQuestion(x){
+
     questionEl.innerText = x.question
     x.options.forEach(Element => {
         
@@ -164,8 +166,8 @@ function showQuestion(x){
         button.addEventListener('click', selectAnswer)
     })
 
-    // console.log("show question")
 }
+
 
 
 // Removes previous question from screen
@@ -173,6 +175,7 @@ function resetDisplay(){
     while (optionEl.firstChild) {
         optionEl.removeChild(optionEl.firstChild)
     }
+    messageEl.textContent = " "
 }
 
 
@@ -180,6 +183,9 @@ function resetDisplay(){
 function selectAnswer(e){
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
+
+    var correctMessage = "correct"
+    var incorrectMessage = "incorrect"
 
     setClass(selectedButton, correct)
 
@@ -200,13 +206,14 @@ function selectAnswer(e){
     // changing points
     if (selectedButton.dataset.correct) {
         points = points + 100
-        scoreEl.innerText = points
+        messageEl.textContent = correctMessage
+        updateDisplay()
     } 
     
     else {
         points = points - 100
-
         secondsLeft = secondsLeft - 10
+        messageEl.textContent = incorrectMessage
         updateDisplay()
     }
 }
