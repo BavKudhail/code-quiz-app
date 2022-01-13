@@ -50,42 +50,42 @@ var questions = [
             { option: "function => function()", correct: false},
         ]
     },
-     {
-        question: "How to write an IF statement in JavaScript?",
-        options: [ 
-            { option: "if i = 5 then", correct: false },
-            { option: "if (i == 5)", correct: true },
-            { option: "if i = 5", correct: false },
-            { option: "if i == 5 then", correct: false },
-        ]
-    },
-    {
-        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
-        options: [
-            { option: "if i <> 5", correct: false},
-            { option: "if (i !-5)", correct: false},
-            { option: "if i (!==) 5 then", correct: true},
-            { option: "if (i <> 5)", correct: false}
-        ]
-    },
-    {
-        question: "How does a FOR loop start?",
-        options: [
-            { option: "for i = 1 to 5", correct: false},
-            { option: "for (i = 0; i < = 5)", correct: false},
-            { option: "for (i <= 5; i++)", correct: false},
-            { option: "for (i = 0; i <= 5; i++)", correct: true},
-        ]
-    },
-     {
-        question: "How can you add a comment in a JavaScript?",
-        options: [
-            { option: "'This is a comment'", correct: false},
-            { option: "<!-- This is a comment -->", correct: false},
-            { option: "<!== This is a comment ==>", correct: false},
-            { option: "//This is a comment", correct: true},
-        ]
-    },
+    //  {
+    //     question: "How to write an IF statement in JavaScript?",
+    //     options: [ 
+    //         { option: "if i = 5 then", correct: false },
+    //         { option: "if (i == 5)", correct: true },
+    //         { option: "if i = 5", correct: false },
+    //         { option: "if i == 5 then", correct: false },
+    //     ]
+    // },
+    // {
+    //     question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    //     options: [
+    //         { option: "if i <> 5", correct: false},
+    //         { option: "if (i !-5)", correct: false},
+    //         { option: "if i (!==) 5 then", correct: true},
+    //         { option: "if (i <> 5)", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "How does a FOR loop start?",
+    //     options: [
+    //         { option: "for i = 1 to 5", correct: false},
+    //         { option: "for (i = 0; i < = 5)", correct: false},
+    //         { option: "for (i <= 5; i++)", correct: false},
+    //         { option: "for (i = 0; i <= 5; i++)", correct: true},
+    //     ]
+    // },
+    //  {
+    //     question: "How can you add a comment in a JavaScript?",
+    //     options: [
+    //         { option: "'This is a comment'", correct: false},
+    //         { option: "<!-- This is a comment -->", correct: false},
+    //         { option: "<!== This is a comment ==>", correct: false},
+    //         { option: "//This is a comment", correct: true},
+    //     ]
+    // },
 ]
 var points = 0
 
@@ -94,50 +94,52 @@ var currentQuestionIndex
 
 startBtn.addEventListener("click", startGame)
 
+// functions
 
+// starts the game
 function startGame(){
     points = 0;
-    scoreEl.innerText = points
-
-    secondsLeft = 120;
-    timerEl.innerText = secondsLeft;
+    secondsLeft = 60;
+    currentQuestionIndex = 0;
 
     startBtn.classList.add("hide");
-    currentQuestionIndex = 0;
 
     questionContainerEl.classList.remove("hide");
     headerEl.classList.remove("hide")
-
     saveScoreEl.classList.add("hide");
 
     getNextQuestion()
     setCountDown()
 }
 
+// Updates the display of the game
+function updateDisplay(){
+    scoreEl.innerText = points;
+    timerEl.innerText = secondsLeft;
 
-// Set countdown 
+}
+
+// Sets countdown timer
 function setCountDown(){
 
     var countDown = setInterval(() => {
 
-
         if (secondsLeft > 0) {
             secondsLeft--;
         }
-        if (secondsLeft <= 0) {
+        else if (secondsLeft <= 0) {
             timerEl.style.color = "red"
             gameFinished()
         }
 
-        timerEl.innerText = secondsLeft;
-
+        updateDisplay()
         
     }, 1000);
 
 }
 
 
-// Get the next question
+// Gets the next question
 function getNextQuestion(){
     resetDisplay()
     showQuestion(questions[currentQuestionIndex])
@@ -145,13 +147,14 @@ function getNextQuestion(){
 }
 
 
-// Show questions on display
+// Show the next question on screen
 function showQuestion(x){
     questionEl.innerText = x.question
     x.options.forEach(Element => {
         
         var button = document.createElement('button')
         button.innerText = Element.option
+        button.classList.add("opt-btn")
 
         if (Element.correct) {
             button.dataset.correct = Element.correct
@@ -165,7 +168,7 @@ function showQuestion(x){
 }
 
 
-// Remove previous buttons from display
+// Removes previous question from screen
 function resetDisplay(){
     while (optionEl.firstChild) {
         optionEl.removeChild(optionEl.firstChild)
@@ -173,7 +176,7 @@ function resetDisplay(){
 }
 
 
-// When user selects a button
+// When the user selects a button...
 function selectAnswer(e){
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
@@ -202,10 +205,9 @@ function selectAnswer(e){
     
     else {
         points = points - 100
-        scoreEl.innerText = points
 
         secondsLeft = secondsLeft - 10
-        // setCountDown()
+        updateDisplay()
     }
 }
 
@@ -227,7 +229,7 @@ function clearClass(element) {
     element.classList.remove('incorrect')
 }
 
-// Function executes when game is finished
+// If game is finished...
 function gameFinished(){
     questionContainerEl.classList.add("hide");
     headerEl.classList.add("hide")

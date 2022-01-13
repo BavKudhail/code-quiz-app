@@ -12,43 +12,50 @@
 <body>
 
     <!-- header for scores and timer -->
-    <header class="hide" id="header">
-        <div class="score-container">
-            <div>Score</div>
-            <div id="score-text">0</div>
-        </div>
-        <div class="timer-container">
-            <div>Timer</div>
-            <div id="timer-text">Tick Tock</div>
-        </div>
-        <button id="high-score-button" class="hide">View High Scores</button>
-    </header>
+    <div class="quiz-container">
 
-    <!-- main questions container -->
-    <div id="question-container" class="hide" >
-        <div id="question">Question</div>
-        <div class="options-container">
-            <div id="option-buttons">
-                <button>Option 1</button>
-                <button>Option 2</button>
-                <button>Option 3</button>
-                <button>Option 4</button>
+        <header class="header hide" id="header">
+            <div class="score-container">
+                <div>Score</div>
+                <div class="score-text" id="score-text">0</div>
+            </div>
+            <div class="high-score-container">
+                <span>View High Scores</span>
+            </div>
+            <div class="timer-container">
+                <div>Time</div>
+                <div class="timer" id="timer-text"></div>
+            </div>
+        </header>
+
+        <!-- main questions container -->
+        <div id="question-container" class="hide">
+            <h1 id="question">Question</h1>
+            <div class="options-container">
+                <div id="option-buttons">
+                    <button class="opt-btn">Option 1</button>
+                    <button class="opt-btn" >Option 2</button>
+                    <button class="opt-btn">Option 3</button>
+                    <button class="opt-btn">Option 4</button>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- control buttons -->
-    <button id="start-btn" class="">Start</button>
-    <button id="restart-btn" class="hide">Restart</button>
-
-    <!-- score container -->
-    <div id="save-score-container" class="hide">
+        
+        <!-- control buttons -->
+        <button id="start-btn" class="start-btn">Start</button>
+        <button id="restart-btn" class=" btn hide">Restart</button>
+        
+        <!-- score container -->
+        <div id="save-score-container" class="hide">
             <label for="Score-Text">Your Final Score Is </label>
             <br>
             <label for="Name">Enter Initials</label>
             <input type="text" id="name-input">
-        <button id="save-score-btn">Save Score</button>
+            <button class="btn" id="save-score-btn">Save Score</button>
+        </div>
+
     </div>
+    
 
 </body>
 </html>

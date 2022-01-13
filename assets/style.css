@@ -1,9 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Space Mono", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(232, 232, 232);
+}
+
+.quiz-container {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.options-container {
+  margin: 2rem 0rem;
+}
+
+.opt-btn {
+  display: flex;
+  font-size: 3rem;
+  background-color: rgb(53, 0, 145);
+  color: #fff;
+  margin: 1rem;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+}
+
+.opt-btn:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  /* background-color: rgb(125, 0, 132);
+  box-shadow: 0 0.4rem 1.4rem rgba(53, 0, 145, 0.6); */
+}
+
+/* buttons */
+
+.start-btn {
+  font-size: 1.5rem;
+  background-color: rgb(53, 0, 145);
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+}
+.start-btn:hover {
+  cursor: pointer;
+  background-color: rgb(125, 0, 132);
+  box-shadow: 0 0.4rem 1.4rem rgba(53, 0, 145, 0.4);
+}
+
 .hide {
   display: none;
 }
+
 .correct {
   background-color: green;
+  box-shadow: 0 0.4rem 1.4rem rgba(0, 128, 0, 0.9);
 }
+
 .incorrect {
   background-color: red;
+  box-shadow: 0 0.4rem 1.4rem rgba(255, 0, 0, 0.9);
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.timer {
+  color: rgb(53, 0, 145);
+  font-size: 2rem;
+}
+.score-text {
+  color: rgb(53, 0, 145);
+  font-size: 2rem;
+}
+
+.btn {
+  font-size: 1.5rem;
+  background-color: rgb(53, 0, 145);
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+}
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(125, 0, 132);
+  box-shadow: 0 0.4rem 1.4rem rgba(53, 0, 145, 0.4);
 }
