@@ -19,9 +19,6 @@
                 <div>Score</div>
                 <div class="score-text" id="score-text">0</div>
             </div>
-            <div class="high-score-container">
-                <span>View High Scores</span>
-            </div>
             <div class="timer-container">
                 <div>Time</div>
                 <div class="timer" id="timer-text"></div>
@@ -38,17 +35,22 @@
             </div>
         </div>
         
-        <!-- control buttons -->
-        <button id="start-btn" class="start-btn">Start</button>
-        <button id="restart-btn" class=" btn hide">Restart</button>
+        <!-- home page -->
+        <div class="home-container">
+            <!-- <h2 class="home-text">LET'S BEGIN</h2> -->
+            <button id="start-btn" class="start-btn">Start Game</button>
+            <button id="view-scores-btn" class="high-score-btn btn">View Scores</button>
+        </div>
         
         <!-- score container -->
-        <div id="save-score-container" class="hide">
-            <label for="Score-Text">Your Final Score Is </label>
-            <br>
-            <label for="Name">Enter Initials</label>
-            <input type="text" id="name-input">
-            <button class="btn" id="save-score-btn">Save Score</button>
+        <div class="test-container">
+            <div id="save-score-container" class="save-score-container hide">
+                <label class="final-score-text" for="Score-Text">Your Final Score Is </label>
+                <label for="Name">Enter Initials</label>
+                <input type="text" id="name-input">
+                <button class="btn" id="save-score-btn">Save Score</button>
+                <button id="restart-btn" class=" btn hide">Restart</button>
+            </div>
         </div>
 
     </div>

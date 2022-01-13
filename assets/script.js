@@ -4,6 +4,9 @@ var saveScoreBtnEl = document.getElementById("save-score-btn");
 var restartBtn = document.getElementById("restart-btn");
 var timerEl = document.getElementById("timer-text");
 var scoreEl = document.getElementById("score-text");
+var highScoreBtnEl = document.querySelector(".high-score-btn");
+var homeContainerEl = document.getElementById("home-container");
+var viewScoresBtn = document.getElementById("view-scores-btn");
 
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
@@ -11,6 +14,7 @@ var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
 var saveScoreEl = document.getElementById("save-score-container");
 var messageEl = document.getElementById("answer-message");
+var finalScoreEl = document.querySelector(".final-score-text");
 
 var secondsLeft;
 
@@ -93,9 +97,16 @@ var points = 0
 var maximumQuestions = questions.length
 var currentQuestionIndex 
 
+
 startBtn.addEventListener("click", startGame)
 
+viewScoresBtn.addEventListener('click', viewScores)
+
 // functions
+
+function viewScores(){
+    console.log("view high scores")
+}
 
 // starts the game
 function startGame(){
@@ -104,6 +115,8 @@ function startGame(){
     currentQuestionIndex = 0;
 
     startBtn.classList.add("hide");
+    viewScoresBtn.classList.add("hide");
+    
 
     questionContainerEl.classList.remove("hide");
     headerEl.classList.remove("hide")
@@ -244,6 +257,8 @@ function gameFinished(){
     restartBtn.classList.remove("hide")
 
     saveScoreEl.classList.remove("hide")
+
+    finalScoreEl.textContent = "Your Final Score is " + points;
     saveScoreBtnEl.addEventListener('click', saveScore)
 }
 

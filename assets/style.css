@@ -108,9 +108,25 @@ h1 {
   color: #fff;
   padding: 1rem 2rem;
   border: none;
+  margin: 0.5rem 0rem;
 }
 .btn:hover {
   cursor: pointer;
   background-color: rgb(125, 0, 132);
   box-shadow: 0 0.4rem 1.4rem rgba(53, 0, 145, 0.4);
+}
+.save-score-container {
+  flex-direction: col;
+}
+.final-score-text {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+.home-text {
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
 }
