@@ -38,51 +38,51 @@ var questions = [
             { option: "function :: myFunction()", correct: false},
         ]
     },
-    //  {
-    //     question: "How do you call a function named 'myFunction'?",
-    //     options: [
-    //         { option: "call myFunction()", correct: false},
-    //         { option: "myFunction()", correct: true},
-    //         { option: "call function myFunction()", correct: false},
-    //         { option: "function => function()", correct: false},
-    //     ]
-    // },
-    //  {
-    //     question: "How to write an IF statement in JavaScript?",
-    //     options: [ 
-    //         { option: "if i = 5 then", correct: false },
-    //         { option: "if (i == 5)", correct: true },
-    //         { option: "if i = 5", correct: false },
-    //         { option: "if i == 5 then", correct: false },
-    //     ]
-    // },
-    // {
-    //     question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
-    //     options: [
-    //         { option: "if i <> 5", correct: false},
-    //         { option: "if (i !-5)", correct: false},
-    //         { option: "if i (!==) 5 then", correct: true},
-    //         { option: "if (i <> 5)", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "How does a FOR loop start?",
-    //     options: [
-    //         { option: "for i = 1 to 5", correct: false},
-    //         { option: "for (i = 0; i < = 5)", correct: false},
-    //         { option: "for (i <= 5; i++)", correct: false},
-    //         { option: "for (i = 0; i <= 5; i++)", correct: true},
-    //     ]
-    // },
-    //  {
-    //     question: "How can you add a comment in a JavaScript?",
-    //     options: [
-    //         { option: "'This is a comment'", correct: false},
-    //         { option: "<!-- This is a comment -->", correct: false},
-    //         { option: "<!== This is a comment ==>", correct: false},
-    //         { option: "//This is a comment", correct: true},
-    //     ]
-    // },
+     {
+        question: "How do you call a function named 'myFunction'?",
+        options: [
+            { option: "call myFunction()", correct: false},
+            { option: "myFunction()", correct: true},
+            { option: "call function myFunction()", correct: false},
+            { option: "function => function()", correct: false},
+        ]
+    },
+     {
+        question: "How to write an IF statement in JavaScript?",
+        options: [ 
+            { option: "if i = 5 then", correct: false },
+            { option: "if (i == 5)", correct: true },
+            { option: "if i = 5", correct: false },
+            { option: "if i == 5 then", correct: false },
+        ]
+    },
+    {
+        question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+        options: [
+            { option: "if i <> 5", correct: false},
+            { option: "if (i !-5)", correct: false},
+            { option: "if i (!==) 5 then", correct: true},
+            { option: "if (i <> 5)", correct: false}
+        ]
+    },
+    {
+        question: "How does a FOR loop start?",
+        options: [
+            { option: "for i = 1 to 5", correct: false},
+            { option: "for (i = 0; i < = 5)", correct: false},
+            { option: "for (i <= 5; i++)", correct: false},
+            { option: "for (i = 0; i <= 5; i++)", correct: true},
+        ]
+    },
+     {
+        question: "How can you add a comment in a JavaScript?",
+        options: [
+            { option: "'This is a comment'", correct: false},
+            { option: "<!-- This is a comment -->", correct: false},
+            { option: "<!== This is a comment ==>", correct: false},
+            { option: "//This is a comment", correct: true},
+        ]
+    },
 ]
 var points = 0
 
@@ -157,6 +157,8 @@ function showQuestion(x){
         questionEl.appendChild(button)
         button.addEventListener('click', selectAnswer)
     })
+
+    // console.log("show question")
 }
 
 
@@ -182,7 +184,7 @@ function selectAnswer(e){
     // If there are more questions remaining, getNextQuestion
     if (maximumQuestions > currentQuestionIndex + 1) {
         currentQuestionIndex++
-        setInterval (getNextQuestion, 1000)
+        setTimeout(getNextQuestion, 500)
     }   
 
     else if (currentQuestionIndex < maximumQuestions){
@@ -246,6 +248,8 @@ function saveScore(event){
 
     localStorage.setItem("name", name);
     localStorage.setItem("score", score);
+
+    location.reload()
 
 }
 

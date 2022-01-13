@@ -7,3 +7,7 @@
 .incorrect {
   background-color: red;
 }
+
+button {
+  font-size: 2rem;
+}
