@@ -1,7 +1,7 @@
 # code-quiz
 
 ##Deployed applicaton:
-https://bavkudhail.github.io/code-quiz/
+https://bavkudhail.github.io/code-quiz-app/
 
 # 04 Web APIs: Code Quiz
 
