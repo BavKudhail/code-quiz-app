@@ -1,12 +1,13 @@
 // DOM variables
 var startBtn = document.getElementById("start-btn");
-var saveScoreBtnEl = document.getElementById("save-score-btn");
 var restartBtn = document.getElementById("restart-btn");
 var timerEl = document.getElementById("timer-text");
 var scoreEl = document.getElementById("score-text");
 var highScoreBtnEl = document.querySelector(".high-score-btn");
 var homeContainerEl = document.getElementById("home-container");
 var viewScoresBtn = document.getElementById("view-scores-btn");
+var saveScoreBtnEl = document.getElementById("save-score-btn");
+var clearScoresBtn = document.getElementById("clear-scores");
 
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
@@ -106,6 +107,13 @@ viewScoresBtn.addEventListener('click', viewScores)
 
 function viewScores(){
     console.log("view high scores")
+    var scoreContainer = document.getElementById("high-score-container")
+    scoreContainer.classList.remove("hide")
+    highScoreBtnEl.classList.add("hide")
+    startBtn.classList.add("hide")
+
+
+
 }
 
 // starts the game
@@ -213,7 +221,7 @@ function selectAnswer(e){
     }   
 
     else if (currentQuestionIndex < maximumQuestions){
-        gameFinished()
+        setTimeout(gameFinished, 500)
     }
 
     // changing points
@@ -253,30 +261,79 @@ function clearClass(element) {
 function gameFinished(){
     questionContainerEl.classList.add("hide");
     headerEl.classList.add("hide")
-
     restartBtn.classList.remove("hide")
-
     saveScoreEl.classList.remove("hide")
 
-    finalScoreEl.textContent = "Your Final Score is " + points;
+    finalScore.innerText = "YOUR FINAL SCORE IS " + points;
+
+    localStorage.setItem("mostRecentScore", points)
+
+
+ // save button event listener
     saveScoreBtnEl.addEventListener('click', saveScore)
 }
+
+
+
+    var userName = document.getElementById("name-input")
+    var finalScore = document.getElementById("final-score-text")
+
+
+    userName.addEventListener("keyup", function(){
+        saveScoreBtnEl.disabled = !userName.value
+    })
+
+
+
+function saveScore(event){
+    event.preventDefault()
+
+    var maxHighScores = 5;
+
+    console.log("clicked save button")
+
+    var mostRecentScore = localStorage.getItem("mostRecentScore")
+    var highScores = JSON.parse(localStorage.getItem("highScores")) || [ ];
+
+    var score = {
+        score: mostRecentScore,
+        name: userName.value
+    }
+
+    highScores.push(score);
+    highScores.sort((a, b) => b.score - a.score);
+    highScores.splice(5);
+    
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+
+    console.log(highScores)
+    location.reload();
+
+}
+
+
 
 // Reloads the game when restart button is clicked
 restartBtn.addEventListener('click', function(){
     location.reload()
 })
 
-function saveScore(event){
-    event.preventDefault()
 
-    var name = document.getElementById("name-input").value;
-    var score = scoreEl.innerText
 
-    localStorage.setItem("name", name);
-    localStorage.setItem("score", score);
+// displaying highScores
 
-    location.reload()
+var highScoresList = document.getElementById("highScoreList")
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [ ];
 
-}
 
+highScoresList.innerHTML =  
+    highScores
+        .map( score => {
+        return `<li class="high-score">${score.name}-${score.score}</li>`;
+        }).join(" ");
+
+
+
+clearScoresBtn.addEventListener('click', function(){
+    localStorage.clear()
+})

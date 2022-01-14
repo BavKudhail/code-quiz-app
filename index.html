@@ -20,7 +20,7 @@
                 <div class="score-text" id="score-text">0</div>
             </div>
             <div class="timer-container">
-                <div>Time</div>
+                <div id="clock">🕣</div>
                 <div class="timer" id="timer-text"></div>
             </div>
         </header>
@@ -38,18 +38,28 @@
         <!-- home page -->
         <div class="home-container">
             <!-- <h2 class="home-text">LET'S BEGIN</h2> -->
-            <button id="start-btn" class="start-btn">Start Game</button>
-            <button id="view-scores-btn" class="high-score-btn btn">View Scores</button>
+            <button id="start-btn" class="start-btn">Start Game 🙌 </button>
+            <button id="view-scores-btn" class="high-score-btn btn">View Scores 🏆 </button>
         </div>
         
         <!-- score container -->
         <div class="test-container">
             <div id="save-score-container" class="save-score-container hide">
-                <label class="final-score-text" for="Score-Text">Your Final Score Is </label>
+                <label class="final-score-text" id="final-score-text" for="Score-Text">Your Final Score Is </label>
                 <label for="Name">Enter Initials</label>
                 <input type="text" id="name-input">
                 <button class="btn" id="save-score-btn">Save Score</button>
                 <button id="restart-btn" class=" btn hide">Restart</button>
+            </div>
+        </div>
+
+
+        <div id="high-score-container" class="high-score-container hide">
+            <div id="highScores">
+                <h1 id="finalScore">High Scores</h1>
+                <ul id="highScoreList" class="highScoreList"></ul>
+                <a class="btn" href="/">Go Back</a>
+                <a class="btn" id="clear-scores" href="/">Clear</a>
             </div>
         </div>
 

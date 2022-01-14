@@ -7,13 +7,13 @@
 }
 
 body {
-  font-family: "Space Mono", monospace;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: rgb(232, 232, 232);
+  font-family: "Space Mono", monospace;
 }
 
 .quiz-container {
@@ -92,6 +92,9 @@ h1 {
   font-weight: bold;
   font-size: 3rem;
 }
+#clock {
+  font-size: 1.5rem;
+}
 
 .timer {
   color: rgb(53, 0, 145);
@@ -129,4 +132,14 @@ h1 {
 .home-container {
   display: flex;
   flex-direction: column;
+}
+
+.highScoreList {
+  margin: 2rem 0rem;
+  padding: 0.5rem;
+}
+
+.high-score {
+  list-style: none;
+  font-size: 1.5rem;
 }
