@@ -34,8 +34,9 @@ THEN I can save my initials and my score ✅
 
 ## Application Screenshot
 
-![application-screenshot-1](https://raw.githubusercontent.com/BavKudhail/advanced-css-portfolio/main/assets/images/deployed-portfolio-desktop.JPG)
-![application-screenshot-2](https://raw.githubusercontent.com/BavKudhail/advanced-css-portfolio/main/assets/images/deployed-portfolio-desktop-3.JPG)
+![application-screenshot-1](https://raw.githubusercontent.com/BavKudhail/code-quiz-app/main/assets/images/screenshot%201.JPG)
+![application-screenshot-2](https://raw.githubusercontent.com/BavKudhail/code-quiz-app/main/assets/images/screenshot%202.JPG)
+![application-screenshot-3](https://raw.githubusercontent.com/BavKudhail/code-quiz-app/main/assets/images/screenshot%203.JPG)
 
 ## The Learning Loop
 
