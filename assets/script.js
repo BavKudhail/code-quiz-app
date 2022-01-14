@@ -1,24 +1,48 @@
 // DOM variables
-var startBtn = document.getElementById("start-btn");
-var restartBtn = document.getElementById("restart-btn");
+
+// Text Elements
 var timerEl = document.getElementById("timer-text");
 var scoreEl = document.getElementById("score-text");
+var messageEl = document.getElementById("answer-message");
+var finalScoreEl = document.querySelector(".final-score-text");
+var userName = document.getElementById("name-input")
+var finalScore = document.getElementById("final-score-text")
+
+
+
+// Button Elements
+var startBtn = document.getElementById("start-btn");
+var restartBtn = document.getElementById("restart-btn");
 var highScoreBtnEl = document.querySelector(".high-score-btn");
-var homeContainerEl = document.getElementById("home-container");
 var viewScoresBtn = document.getElementById("view-scores-btn");
 var saveScoreBtnEl = document.getElementById("save-score-btn");
 var clearScoresBtn = document.getElementById("clear-scores");
+var optionEl = document.getElementById("option-buttons")
 
+
+// Container Elements
 var questionContainerEl = document.getElementById("question-container");
 var questionEl = document.getElementById("question");
-var optionEl = document.getElementById("option-buttons")
 var headerEl = document.getElementById("header")
 var saveScoreEl = document.getElementById("save-score-container");
-var messageEl = document.getElementById("answer-message");
-var finalScoreEl = document.querySelector(".final-score-text");
 
+
+//  High score variables
+var highScoresList = document.getElementById("highScoreList")
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [ ];
+
+
+highScoresList.innerHTML =  
+    highScores
+        .map( score => {
+        return `<li class="high-score">${score.name}-${score.score}</li>`;
+        }).join(" ");
+
+
+
+
+// Javascript variables
 var secondsLeft;
-
 var questions = [
     {
         question: "Inside which HTML element do we put the JavaScript?",
@@ -56,67 +80,66 @@ var questions = [
             { option: "function => function()", correct: false},
         ]
     },
-    //  {
-    //     question: "How to write an IF statement in JavaScript?",
-    //     options: [ 
-    //         { option: "if i = 5 then", correct: false },
-    //         { option: "if (i == 5)", correct: true },
-    //         { option: "if i = 5", correct: false },
-    //         { option: "if i == 5 then", correct: false },
-    //     ]
-    // },
-    // {
-    //     question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
-    //     options: [
-    //         { option: "if i <> 5", correct: false},
-    //         { option: "if (i !-5)", correct: false},
-    //         { option: "if i (!==) 5 then", correct: true},
-    //         { option: "if (i <> 5)", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "How does a FOR loop start?",
-    //     options: [
-    //         { option: "for i = 1 to 5", correct: false},
-    //         { option: "for (i = 0; i < = 5)", correct: false},
-    //         { option: "for (i <= 5; i++)", correct: false},
-    //         { option: "for (i = 0; i <= 5; i++)", correct: true},
-    //     ]
-    // },
-    //  {
-    //     question: "How can you add a comment in a JavaScript?",
-    //     options: [
-    //         { option: "'This is a comment'", correct: false},
-    //         { option: "<!-- This is a comment -->", correct: false},
-    //         { option: "<!== This is a comment ==>", correct: false},
-    //         { option: "//This is a comment", correct: true},
-    //     ]
-    // },
+     {
+        question: "How to write an IF statement in JavaScript?",
+        options: [ 
+            { option: "if i = 5 then", correct: false },
+            { option: "if (i == 5)", correct: true },
+            { option: "if i = 5", correct: false },
+            { option: "if i == 5 then", correct: false },
+        ]
+    },
+    {
+        question: "How does a FOR loop start?",
+        options: [
+            { option: "for i = 1 to 5", correct: false},
+            { option: "for (i = 0; i < = 5)", correct: false},
+            { option: "for (i <= 5; i++)", correct: false},
+            { option: "for (i = 0; i <= 5; i++)", correct: true},
+        ]
+    },
+     {
+        question: "How can you add a comment in a JavaScript?",
+        options: [
+            { option: "'This is a comment'", correct: false},
+            { option: "<!-- This is a comment -->", correct: false},
+            { option: "<!== This is a comment ==>", correct: false},
+            { option: "//This is a comment", correct: true},
+        ]
+    },
 ]
 var points = 0
-
 var maximumQuestions = questions.length
 var currentQuestionIndex 
 
 
+// Event Listeners
+
+// Starts game
 startBtn.addEventListener("click", startGame)
 
+// Opens scoreboard
 viewScoresBtn.addEventListener('click', viewScores)
 
-// functions
+// Clears scoreboard
+clearScoresBtn.addEventListener('click', function(){
+    localStorage.clear()
+})
 
-function viewScores(){
-    console.log("view high scores")
-    var scoreContainer = document.getElementById("high-score-container")
-    scoreContainer.classList.remove("hide")
-    highScoreBtnEl.classList.add("hide")
-    startBtn.classList.add("hide")
+// Stores username value
+userName.addEventListener("keyup", function(){
+    saveScoreBtnEl.disabled = !userName.value
+})
+
+// Reloads game when button is clicked
+restartBtn.addEventListener('click', function(){
+    location.reload()
+})
 
 
+// Functions
 
-}
-
-// starts the game
+// Starts the game
 function startGame(){
     points = 0;
     secondsLeft = 60;
@@ -134,16 +157,16 @@ function startGame(){
     setCountDown()
 }
 
+
 // Updates the display of the game
 function updateDisplay(){
     scoreEl.innerText = points;
     timerEl.innerText = secondsLeft;
-
 }
+
 
 // Sets countdown timer
 function setCountDown(){
-
     var countDown = setInterval(() => {
 
         if (secondsLeft > 0) {
@@ -188,7 +211,6 @@ function showQuestion(x){
     })
 
 }
-
 
 
 // Removes previous question from screen
@@ -265,32 +287,17 @@ function gameFinished(){
     saveScoreEl.classList.remove("hide")
 
     finalScore.innerText = "YOUR FINAL SCORE IS " + points;
-
     localStorage.setItem("mostRecentScore", points)
 
-
- // save button event listener
     saveScoreBtnEl.addEventListener('click', saveScore)
 }
 
 
-
-    var userName = document.getElementById("name-input")
-    var finalScore = document.getElementById("final-score-text")
-
-
-    userName.addEventListener("keyup", function(){
-        saveScoreBtnEl.disabled = !userName.value
-    })
-
-
-
+// When user clicks save score
 function saveScore(event){
     event.preventDefault()
 
     var maxHighScores = 5;
-
-    console.log("clicked save button")
 
     var mostRecentScore = localStorage.getItem("mostRecentScore")
     var highScores = JSON.parse(localStorage.getItem("highScores")) || [ ];
@@ -306,34 +313,15 @@ function saveScore(event){
     
     localStorage.setItem('highScores', JSON.stringify(highScores));
 
-    console.log(highScores)
     location.reload();
 
 }
 
 
-
-// Reloads the game when restart button is clicked
-restartBtn.addEventListener('click', function(){
-    location.reload()
-})
-
-
-
-// displaying highScores
-
-var highScoresList = document.getElementById("highScoreList")
-var highScores = JSON.parse(localStorage.getItem("highScores")) || [ ];
-
-
-highScoresList.innerHTML =  
-    highScores
-        .map( score => {
-        return `<li class="high-score">${score.name}-${score.score}</li>`;
-        }).join(" ");
-
-
-
-clearScoresBtn.addEventListener('click', function(){
-    localStorage.clear()
-})
+// Displays Scoreboard
+function viewScores(){
+    var scoreContainer = document.getElementById("high-score-container")
+    scoreContainer.classList.remove("hide")
+    highScoreBtnEl.classList.add("hide")
+    startBtn.classList.add("hide")
+}
