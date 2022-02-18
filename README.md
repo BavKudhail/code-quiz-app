@@ -38,6 +38,13 @@ THEN I can save my initials and my score ✅
 ![application-screenshot-2](https://raw.githubusercontent.com/BavKudhail/code-quiz-app/main/assets/images/screenshot%202.JPG)
 ![application-screenshot-3](https://raw.githubusercontent.com/BavKudhail/code-quiz-app/main/assets/images/screenshot%203.JPG)
 
+## Technologies used
+
+*html
+*css
+*javascript
+
+
 ## The Learning Loop
 
 ### Research Topics
@@ -52,7 +59,6 @@ THEN I can save my initials and my score ✅
 * Data Attributes
 * Local Storage Objects
 * Type coercion
-
 
 ## Deployed Application
 
