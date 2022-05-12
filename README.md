@@ -40,9 +40,9 @@ THEN I can save my initials and my score ✅
 
 ## Technologies used
 
-*html
-*css
-*javascript
+* html
+* css
+* javascript
 
 
 ## The Learning Loop
