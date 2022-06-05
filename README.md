@@ -1,11 +1,9 @@
-# Web APIs: Code Quiz
+# Code Quiz
 
 ## The Goal
-
 Build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
 
 ## User Story
-
 ```
 AS A coding boot camp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
@@ -13,7 +11,6 @@ SO THAT I can gauge my progress compared to my peers
 ```
 
 ## Acceptance Criteria
-
 ```
 GIVEN I am taking a code quiz
 WHEN I click the start button
