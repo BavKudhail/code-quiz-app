@@ -1,7 +1,7 @@
 # Code Quiz
 
 ## The Goal
-Build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+As a junior developer. Having strong javascript fundamentals is paramount. The goal of this app is to build a timed coding quiz with multiple-choice questions. This will ensure that juniours are always up to speed with their javascript fundamentals. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
 
 ## User Story
 ```
